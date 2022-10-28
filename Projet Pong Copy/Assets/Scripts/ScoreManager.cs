@@ -30,9 +30,13 @@ public class ScoreManager : MonoBehaviour
     
     private void CheckScore()
     {
-        if(Player1Score == ScoreToReach || Player2Score == ScoreToReach)
+        if(Player1Score == ScoreToReach)
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene(3);
+        }
+        else if(Player2Score == ScoreToReach)
+        {
+            SceneManager.LoadScene(4);
         }
     }
 

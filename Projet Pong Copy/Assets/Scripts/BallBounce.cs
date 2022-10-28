@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallBounce : MonoBehaviour
 {
     public GameObject HitSFX;
+    public GameObject Test;
 
     public BallMove BallMovement;
     public ScoreManager scoreManager;
@@ -17,7 +18,7 @@ public class BallBounce : MonoBehaviour
         float racketheight = collision.collider.bounds.size.y;
 
         float PositionX;
-        if(collision.gameObject.name == "Player 1")
+        if(collision.gameObject.name == "Player1")
         {
             PositionX = 1;
         }
@@ -35,7 +36,7 @@ public class BallBounce : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Player 1" || collision.gameObject.name == "Player 2")
+        if (collision.gameObject.name == "Player1" || collision.gameObject.name == "Player2")
         {
             Bounce(collision);
         }
@@ -44,15 +45,18 @@ public class BallBounce : MonoBehaviour
             scoreManager.Player1Goal();
             BallMovement.Player1Start = false;
             StartCoroutine(BallMovement.Launch());
+            
         }
         else if(collision.gameObject.name == "LeftBorder")
         {
             scoreManager.Player2Goal();
             BallMovement.Player1Start = true;
             StartCoroutine(BallMovement.Launch());
+            
         }
 
         Instantiate(HitSFX, transform.position, transform.rotation);
+        
     } 
 
 }

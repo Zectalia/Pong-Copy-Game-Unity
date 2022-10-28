@@ -9,9 +9,14 @@ public class BallMove : MonoBehaviour
     public float ExtraSpeed;
     public float MaxExtraSpeed;
     public bool Player1Start = true;
+    public float speedM;
+    public Color Highspeedcolor;
+    public Color LowSpeedcolor;
 
     private int HitCounter = 0;
     private Rigidbody2D rb;
+    public SpriteRenderer sr;
+    public TrailRenderer tr;
 
 
     // Start is called before the first frame update
@@ -23,7 +28,7 @@ public class BallMove : MonoBehaviour
 
     private void RestartBall()
     {
-        rb.velocity = new Vector2(0,0);
+        rb.velocity = new Vector2(0, 0);
         transform.position = new Vector2(0, 0);
     }
 
@@ -58,6 +63,22 @@ public class BallMove : MonoBehaviour
             HitCounter++;
         }
     }
-       
-   
+    private void FixedUpdate()
+    {
+        if (rb.velocity.magnitude > speedM)
+        {
+            sr.color = Highspeedcolor;
+            tr.startColor = Highspeedcolor;
+            tr.endColor = Highspeedcolor;
+            
+        }
+        else
+        {
+            sr.color = LowSpeedcolor;
+            tr.startColor = LowSpeedcolor;
+            tr.endColor = LowSpeedcolor;
+        }
+
+    }
+
 }
